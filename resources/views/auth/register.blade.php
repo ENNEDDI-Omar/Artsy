@@ -4,9 +4,15 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="nom" :value="__('nom')" />
+            <x-text-input id="nom" class="block mt-1 w-full" type="text" name="nom" :value="old('nom')" required autofocus autocomplete="nom" />
+            <x-input-error :messages="$errors->get('nom')" class="mt-2" />
+        </div>
+        <!--prénom-->
+        <div>
+            <x-input-label for="prénom" :value="__('prénom')" />
+            <x-text-input id="prenom" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required autofocus autocomplete="prenom" />
+            <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
@@ -37,6 +43,12 @@
                             name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="tel" :value="__('tel')" />
+            <x-text-input id="tel" class="block mt-1 w-full" type="tel" name="tel" :value="old('nom')"/>
+            <x-input-error :messages="$errors->get('tel')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
