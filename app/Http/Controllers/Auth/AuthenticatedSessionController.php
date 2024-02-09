@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,9 +30,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (auth()->user()->role->id =='1') {
+            return redirect()->route('admin.index');
+        }elseif (auth()->user()->role->id =='2') {
+            return redirect()->route('artiste.index');
+        }elseif (auth()->user()->role->id =='3') {
+            return redirect()->route('partner.index');
+        }else {
+            return redirect('/');
+        }
     }
 
     /**

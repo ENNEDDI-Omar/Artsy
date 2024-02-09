@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,21 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+//////////////////////////////////////////////////////
+
+// Route::middleware(['auth', 'admin'])->groupe(function(){
+//    Route::resource('users', UserController::class);
+//    Route::resource('projects', );
+//    Route::resource('partners');
+// });
+
+// Route::middleware(['auth', 'partner', 'artiste'])->group(function(){
+//      Route::resource('projects', );
+//      Route::resource('partners', );
+//      Route::resource('artistes',);
+// });
+
+
 
 require __DIR__.'/auth.php';
