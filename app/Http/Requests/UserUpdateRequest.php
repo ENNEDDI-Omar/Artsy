@@ -3,6 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
+
+use function Laravel\Prompts\password;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -22,7 +26,11 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+           'nom' =>['required', 'alpha', 'max:20'],
+           'prenom' =>['required', 'alpha', 'max:20'],
+           'email' =>['required', 'string', 'email', Rule::unique('users', 'email')->ignore($this->user)],
+           'password' =>['nullable', 'string', 'confirmed', Password::defaults()],
+           'tel' =>['nullable', 'string', 'max:15'],
         ];
     }
 }

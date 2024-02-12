@@ -26,7 +26,7 @@ class UserStoreRequest extends FormRequest
             'nom'=>['required', 'alpha', 'max:20'],
             'prenom'=>['required', 'alpha', 'max:20'],
             'email'=>['required', 'string', 'email', 'unique:users,email'],
-            'password'=>['required', 'confirmed', Password::defaults()],
+            'password'=>['required', 'confirmed', 'min:6', Password::defaults()],
             'tel'=>['nullable', 'string', 'max:15'],
         ];
     }
