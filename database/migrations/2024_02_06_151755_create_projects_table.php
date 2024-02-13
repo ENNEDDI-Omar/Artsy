@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('art_project_user', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('affiche');
+            $table->string('titre');
+            $table->text('description');
+            $table->enum('statut', ['En cours', 'Terminé'])->default('En cours');
+            $table->string('budget');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('art_project_user');
+        Schema::dropIfExists('projects');
     }
 };

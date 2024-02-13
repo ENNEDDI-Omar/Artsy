@@ -30,11 +30,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (auth()->user()->role->id =='1') {
+        $userRole = auth()->user()->roles->pluck('id')->toArray();
+        if (in_array(1, $userRole)) {
             return redirect()->route('admin.index');
-        }elseif (auth()->user()->role->id =='2') {
+        }elseif (in_array(2, $userRole)) {
             return redirect()->route('artiste.index');
-        }elseif (auth()->user()->role->id =='3') {
+        }elseif (in_array(3, $userRole)) {
             return redirect()->route('partner.index');
         }else {
             return redirect('/');

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
+            $table->string('logo');
+            $table->string('entreprise');
+            $table->string('domaine');
             $table->timestamps();
         });
     }

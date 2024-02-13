@@ -35,11 +35,10 @@ class UserController extends Controller
        $user['password'] = bcrypt($request->input('password'));
 
       $CreatedUser=User::create($user);
+       
+      //création d'user et attacher le role à l'utilisateur //
       $roles = $request->input('roles', []);
-
       $CreatedUser->roles()->attach($roles);
-
-      
 
       return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succés!');
     }
