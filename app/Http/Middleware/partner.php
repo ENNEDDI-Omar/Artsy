@@ -15,8 +15,9 @@ class partner
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        if (Auth::check() && Auth::user()->role->nom == 'partner') {
+    {   
+        $user=Auth::user();
+        if (Auth::check() && $user->roles->where('nom', 'partner')->isNotEmpty()) {
             return $next($request);   
         }else {
            return abort(403);

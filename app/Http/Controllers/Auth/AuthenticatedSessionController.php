@@ -32,9 +32,9 @@ class AuthenticatedSessionController extends Controller
 
         $userRole = auth()->user()->roles->pluck('id')->toArray();
         if (in_array(1, $userRole)) {
-            return redirect()->route('admin.index');
+            return redirect()->route('Dash.index');
         }elseif (in_array(2, $userRole)) {
-            return redirect()->route('artiste.index');
+            return redirect()->route('DashArt.index');
         }elseif (in_array(3, $userRole)) {
             return redirect()->route('partner.index');
         }else {

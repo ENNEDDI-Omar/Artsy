@@ -22,7 +22,9 @@ class PartnerUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'logo' => ['nullable', 'image'],
+            'entreprise' => ['required', 'string'],
+            'domaine' => ['required', 'string'],
         ];
     }
 }

@@ -17,7 +17,8 @@ class PartnerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'entreprise' =>fake()->company(),
+            'domaine' =>fake()->domainWord(),
         ];
     }
 }

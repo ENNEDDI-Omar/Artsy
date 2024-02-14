@@ -22,10 +22,10 @@ class ProjectUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'affiche' => ['nullable', 'image', 'max:4096'], // Un fichier image optionnel de moins de 2 Mo
-            'titre' => ['nullable', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
-            'budget' => ['nullable', 'alpha_num', 'min:0'],
+            'affiche' => 'nullable', 'image', 'max:4096', // Un fichier image optionnel de moins de 2 Mo
+            'titre' => 'nullable', 'string', 'max:255',
+            'description' => 'nullable', 'string',
+            'budget' => 'nullable', 'alpha_num', 'min:0',
         ];
     }
 }

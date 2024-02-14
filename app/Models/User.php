@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Project::class);
     }
 
+    // public function hasRole($roleName)
+    // {
+    //     return $this->roles->pluck('nom')->contains($roleName);
+    // }
+
 
 
     /**

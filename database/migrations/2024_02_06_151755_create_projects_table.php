@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('affiche');
             $table->string('titre');
             $table->text('description');
             $table->enum('statut', ['En cours', 'Terminé'])->default('En cours');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Partner;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,9 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $users=User::all();
-        // $projects=
-        // $partners=
-        return view('admin', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -23,7 +22,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles=Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     // /**
@@ -31,10 +31,13 @@ class UserController extends Controller
     //  */
     public function store(UserStoreRequest $request, User $user)
     {
+    
+       
         $user = $request->validated();
        $user['password'] = bcrypt($request->input('password'));
 
       $CreatedUser=User::create($user);
+
        
       //création d'user et attacher le role à l'utilisateur //
       $roles = $request->input('roles', []);

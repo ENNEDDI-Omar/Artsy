@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PartnerStoreRequest;
+use App\Http\Requests\PartnerUpdateRequest;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        //
+        $partners=Partner::all();
+       return view('admin.partners.index', compact('partners')); 
     }
 
     /**
@@ -20,15 +23,18 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.partners.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PartnerStoreRequest $request)
     {
-        //
+        $PartnerData=$request->validated();
+        $partners=Partner::create($PartnerData);
+        $partners->addMediaFromRequest('logo')->toMediaCollection('partners');
+        return redirect()->route('partners.index')->with('success', 'Partner créé avec Succés!');
     }
 
     /**
@@ -36,7 +42,7 @@ class PartnerController extends Controller
      */
     public function show(Partner $partner)
     {
-        //
+        return view('admin.partners.show', compact('partner'));
     }
 
     /**
@@ -44,15 +50,21 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-        //
+        return view('admin.partners.edit', compact('partner'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Partner $partner)
+    public function update(PartnerUpdateRequest $request, Partner $partner)
     {
-        //
+        $partnerData=$request->validated();
+        $partner->update($partnerData);
+        if ($request->hasFile('logo')) {
+            $partner->clearMediaCollection('partners');
+            $partner->addMediaFromRequest('logo')->toMediaCollection('partners');
+        }
+        return redirect()->route('partners.index')->with('succes', 'Partner mis à jour avec succés!');
     }
 
     /**
@@ -60,6 +72,7 @@ class PartnerController extends Controller
      */
     public function destroy(Partner $partner)
     {
-        //
+        $partner->delete();
+        return redirect()->route('partners.index')->with('succes', 'Partner supprimé avec succés!');
     }
 }

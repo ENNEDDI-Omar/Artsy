@@ -20,17 +20,18 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Mot de passe :</label>
-                <input type="password" id="password" name="Password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:shadow-outline" required>
+                <input type="password" id="password" name="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:shadow-outline" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="tel">Téléphone :</label>
                 <input type="tel" id="tel" name="tel" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:shadow-outline" required>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="role_id">Rôle :</label>
-                <select id="role_id" name="role_id" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:shadow-outline" required>
-                    <option value="1">Admin</option>
-                    <option value="2">Utilisateur</option>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="roles">Rôles :</label>
+                <select id="roles" name="roles[]" multiple  class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:shadow-outline" required>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->nom }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="flex items-center justify-between">

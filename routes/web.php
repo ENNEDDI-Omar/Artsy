@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminDashController;
+use App\Http\Controllers\ArtisteDashController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,11 +35,16 @@ Route::middleware('auth')->group(function () {
 
 //////////////////////////////////////////////////////
 
-// Route::middleware(['auth', 'admin'])->groupe(function(){
-//    Route::resource('users', UserController::class);
-//    Route::resource('projects', );
-//    Route::resource('partners');
-// });
+Route::middleware(['auth', 'admin'])->group(function(){
+    Route::resource('Dash', AdminDashController::class);
+   Route::resource('users', UserController::class);
+   Route::resource('projects', ProjectController::class );
+   Route::resource('partners', PartnerController::class);
+});
+
+Route::middleware(['auth', 'artiste'])->group(function(){
+   Route::resource('DashArt', ArtisteDashController::class);
+});
 
 // Route::middleware(['auth', 'partner', 'artiste'])->group(function(){
 //      Route::resource('projects', );

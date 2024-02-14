@@ -60,6 +60,16 @@
                         <li class="px-2 md:px-4 hidden md:block">
                             <a href="views/auth/signup.php" class="text-gray-500 font-semibold hover:text-green-600"> Register </a>
                         </li>
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
                     </ul>
         
                 </header>

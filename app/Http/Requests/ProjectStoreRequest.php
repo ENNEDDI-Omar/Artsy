@@ -22,10 +22,10 @@ class ProjectStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'affiche' => ['required', 'image', 'max:4096'],
-            'titre' =>['required', 'string', 'max:100'],
-            'description' =>['required', 'string'],
-            'budget' =>['required', 'alpha_num', 'min:0'],
+            'affiche' => 'required', 'image', 'max:4096',
+            'titre' =>'required', 'string', 'max:100',
+            'description' =>'required', 'string',
+            'budget' =>'required', 'alpha_num', 'min:0',
         ];
     }
 }

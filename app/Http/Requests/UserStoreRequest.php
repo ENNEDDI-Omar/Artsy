@@ -23,11 +23,12 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom'=>['required', 'alpha', 'max:20'],
-            'prenom'=>['required', 'alpha', 'max:20'],
-            'email'=>['required', 'string', 'email', 'unique:users,email'],
-            'password'=>['required', 'confirmed', 'min:6', Password::defaults()],
-            'tel'=>['nullable', 'string', 'max:15'],
+        'nom' => 'required', 'string', 'max:20',
+        'prenom' => 'required','string','max:20',
+        'email' => 'required','string','email','unique:users,email',
+        'password' => 'required','confirmed','min:6',Password::defaults(),
+        'tel' => 'nullable','string','max:15',
+        'roles' => 'required','array',
         ];
     }
 }

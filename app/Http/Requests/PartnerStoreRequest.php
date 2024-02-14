@@ -22,7 +22,9 @@ class PartnerStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'logo' => ['required', 'image'],
+            'entreprise' => ['required', 'string', 'max:255'],
+            'domaine' => ['required', 'string', 'max:255'],
         ];
     }
 }

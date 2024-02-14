@@ -33,8 +33,10 @@ class ProjectController extends Controller
      */
     public function store(ProjectStoreRequest $request, Project $project)
     {
-        $project = $request->validated();
-        Project::create($project);
+        
+        $projectData = $request->validated();
+        $projects=Project::create($projectData);
+        $projects->addMediaFromRequest('affiche')->toMediaCollection('projects'); 
         return redirect()->route('projects.index')->with('success', 'Projet Ajouté avec succés!');
     }
 
@@ -58,9 +60,13 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      */
     public function update(ProjectUpdateRequest $request, Project $project)
-    {
+    {   
         $projectData=$request->validated();
         $project->update($projectData);
+        if ($request->hasFile('affiche')) {
+            $project->clearMediaCollection('projects');
+            $project->addMediaFromRequest('affiche')->toMediaCollection('projects');
+        }
         return redirect()->route('projects.index')->with('success', 'Projet mis à jour avec succés!');
     }
 
@@ -70,6 +76,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('succes', 'Projet Supprimé avec Succés!');
     }
 }

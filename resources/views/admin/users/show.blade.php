@@ -24,14 +24,15 @@
                 <p id="tel">{{ $user->tel }}</p>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="role_id">Rôle :</label>
-                <p id="role_id">{{ $user->role->nom }}</p>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="roles">Rôles :</label>
+                @foreach ($user->roles as $role)
+                    <p>{{ $role->nom }}</p>
+                @endforeach
             </div>
             <div class="flex items-center justify-between">
                 <a href="{{ route('users.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Retour</a>
             </div>
         </div>
     </div>
-    
  
- </x-app-layout>
+</x-app-layout>

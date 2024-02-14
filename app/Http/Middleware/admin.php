@@ -16,7 +16,8 @@ class admin
      */
     public function handle(Request $request, Closure $next): Response
     { 
-        if (Auth::check() && Auth::user()->role->nom == 'admin') {
+        $user=Auth::user();
+        if (Auth::check() && $user->roles->where('nom', 'admin')->isNotEmpty()) {
             return $next($request);
         }else {
             return abort(401);

@@ -16,7 +16,8 @@ class artiste
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role->nom == 'artiste') {
+        $user=Auth::user();
+        if (Auth::check()&& $user->roles->where('nom', 'artiste')->isNotEmpty()) {
             return $next($request); 
         }else {
             return abort(402);

@@ -17,7 +17,6 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'affiche' =>fake()->image(),
             'titre' =>fake()->title(),
             'description' =>fake()->text(),
             'budget' =>fake()->numberBetween('800000', '3000000'),

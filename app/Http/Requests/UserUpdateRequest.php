@@ -26,11 +26,11 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'nom' =>['required', 'alpha', 'max:20'],
-           'prenom' =>['required', 'alpha', 'max:20'],
+           'nom' =>['required', 'string', 'max:20'],
+           'prenom' =>['required', 'string', 'max:20'],
            'email' =>['required', 'string', 'email', Rule::unique('users', 'email')->ignore($this->user)],
            'password' =>['nullable', 'string', 'confirmed', Password::defaults()],
-           'tel' =>['nullable', 'string', 'max:15'],
+           'tel' =>['nullable', 'string', 'max:30'],
         ];
     }
 }
