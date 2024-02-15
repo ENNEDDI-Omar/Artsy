@@ -30,7 +30,7 @@ class PartnerController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(PartnerStoreRequest $request)
-    {
+    {    
         $PartnerData=$request->validated();
         $partners=Partner::create($PartnerData);
         $partners->addMediaFromRequest('logo')->toMediaCollection('partners');
@@ -73,6 +73,6 @@ class PartnerController extends Controller
     public function destroy(Partner $partner)
     {
         $partner->delete();
-        return redirect()->route('partners.index')->with('succes', 'Partner supprimé avec succés!');
+        return redirect()->route('partners.index')->with('success', 'Partner supprimé avec succés!');
     }
 }

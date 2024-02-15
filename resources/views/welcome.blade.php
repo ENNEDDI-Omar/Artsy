@@ -36,7 +36,7 @@
                 <!-- header -->
                 <header class="flex items-center justify-between py-2">
                     <a href="#" class="px-2 lg:px-0 font-bold capitalize">
-                        Tech Blog
+                        ArtsyCollab
                     </a>
                     <button class="block md:hidden px-2 text-3xl">
                         <i class='bx bx-menu'></i>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->enum('statut', ['En cours', 'Terminé'])->default('En cours');
             $table->string('budget');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

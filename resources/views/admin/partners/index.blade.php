@@ -11,7 +11,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach ($partners as $partner)
                 <div class="bg-white rounded-lg p-6 shadow-md mb-4">
-                    <img src="{{ $partner->getFirstMediaUrl('partners')) }}"
+                    <img src="{{ $partner->getFirstMediaUrl('partners') }}"
                         alt="{{ $partner->entreprise }}" class="w-full h-32 object-cover mb-4 rounded-lg">
                     <h2 class="text-xl font-semibold mb-2">{{ $partner->entreprise }}</h2>
                     <p class="text-gray-600">{{ $partner->domaine }}</p>
@@ -32,7 +32,10 @@
                 </div>
             @endforeach
         </div>
-
+        <div class="flex items-center justify-between">
+            <a href="{{ route('Dash.index') }}"
+                class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Retour</a>
+        </div>
     </div>
 
 </x-app-layout>

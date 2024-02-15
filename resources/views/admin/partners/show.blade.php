@@ -4,7 +4,7 @@
         <h1 class="text-3xl font-bold mb-4">{{ $partner->entreprise }}</h1>
 
         <div class="mb-4">
-            <img src="{{ $partner->getFirstMediaUrl('partners', 'logo')) }}"
+            <img src="{{ $partner->getFirstMediaUrl('partners', 'logo') }}"
                 alt="{{ $partner->entreprise }}" class="w-full">
         </div>
 
