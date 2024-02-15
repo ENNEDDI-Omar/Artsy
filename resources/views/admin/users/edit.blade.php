@@ -47,14 +47,15 @@
             
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="role_id">Rôle :</label>
-                    <select id="role_id" name="role_id"
+                    <select id="role_id" name="roles[]" multiple 
                         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         @foreach ($roles as $role)
-                            <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>
-                                {{ $role->nom }}</option>
+                            <option value="{{ $role->id }}" {{ in_array($role->id, old('roles', $user->roles->pluck('id')->toArray())) ? 'selected' : '' }}>
+                                {{ $role->nom }}
+                            </option>
                         @endforeach
                     </select>
-                    @error('role_id')
+                    @error('roles')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>

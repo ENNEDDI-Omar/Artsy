@@ -14,6 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $users=User::all();
+        
         return view('admin.users.index', compact('users'));
     }
 
@@ -73,6 +74,8 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, User $user)
     {
+
+     
 
         $userData = $request->validated();
         

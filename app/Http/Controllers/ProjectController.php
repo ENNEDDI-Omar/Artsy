@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssigneArtisteStoreRequest;
+use App\Http\Requests\AssigneArtisteUpdateRequest;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
@@ -45,7 +48,12 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.projet.show', compact('project'));
+
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('nom', 'artiste');
+        })->get();
+
+        return view('admin.projet.show', compact('project', "users"));
     }
 
     /**
@@ -78,4 +86,42 @@ class ProjectController extends Controller
         $project->delete();
         return redirect()->route('projects.index')->with('succes', 'Projet Supprimé avec Succés!');
     }
+
+    public function assignArtist(AssigneArtisteStoreRequest $request, Project $project)
+    {
+      
+        $validatedData = $request->validated();
+        $artistIds = $validatedData['artist_id'] ?? [];
+        $projectId = $request->input('project_id');
+        $project=Project::find($projectId);
+        $project->users()->attach($artistIds);
+
+        return redirect()->route('projects.index')->with('success', 'Artistes assignés avec succès.');
+    }
+
+
+    
+    
+
+    // public function assignArtist(Request $request, Project $project)
+    // {   dd($request->all());
+    //     $validatedData = $request->validated();
+    //     $artistIds = $validatedData['artist_id'] ?? [];
+    
+    //     // Use sync to synchronize the relationship
+    //     $project->users()->sync($artistIds);
+    
+    //     return redirect()->route('projects.index')->with('success', 'Artistes assignés avec succès.');
+    // }
+    
+
+    // public function reassignArtist(AssigneArtisteUpdateRequest $request, Project $project)
+    // {
+    // $request->validated();
+
+    // $artistIds = $request->input('artist_id', []);
+    // $project->users()->sync($artistIds);
+
+    // return redirect()->route('projects.show', $project->id)->with('success', 'Artistes assignés avec succès.');
+    // }
 }

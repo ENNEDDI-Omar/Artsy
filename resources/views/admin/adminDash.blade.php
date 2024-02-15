@@ -30,6 +30,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3a2 2 0 012-2h10a2 2 0 012 2M5 3v18a2 2 0 002 2h10a2 2 0 002-2V3m-2 0h-8v18" />
                         </svg> 
                     </a>
+                    <a href="{{ route('partners.index') }}" class="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg">
+                        <span class="sr-only">Partners</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 00-2 2 2 2 0 01-2 2h-.01M11 21v-8M11 10V3"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a2 2 0 01-2 2h-.01M13 21v-8m8 8v-8M6 12a2 2 0 01-2-2H4"></path>
+                        </svg>
+                        
+                          
+                    </a>
                     
                 </nav>
                 <div class="inline-flex items-center justify-center h-20 w-20 border-t border-gray-700">
